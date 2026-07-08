@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. KHO DỮ LIỆU TẤT CẢ CÁC DỰ ÁN CỦA BẠN (Tự do thêm hàng chục dự án tại đây)
     const allMyProjectsArray = [
         { title: "Dự án 1: Thiệp sinh nhật", url: "https://sinh-nhat-ny.netlify.app/", icon: "🎂" },
-        { title: "Dự án 2: Thẻ giới thiệu thông tin", url: "https://wei7-dev.github.io/card-profile/", icon: "💳" },
+        { title: "Dự án 2: Thẻ thông tin", url: "https://wei7-dev.github.io/card-profile/", icon: "💳" },
         { title: "Dự án 3: HRM-System", url: "https://wei7-dev.github.io/hrm-system/", icon: "📱" }
         // { title: "Dự án 4: Website Bất Động Sản", url: "https://link-bds.com", icon: "🏠" }
     ];
