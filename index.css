@@ -1,0 +1,650 @@
+/* ==========================================================================
+   1. ĐỊNH NGHĨA BIẾN MÀU SẮC (HỖ TRỢ THEME)
+   ========================================================================== */
+:root {
+    --primary-gradient: linear-gradient(135deg, #ff007f 0%, #7000ff 100%);
+    --bg-color: #0b0f19;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #ffffff;
+    --text-muted: #8a99ad;
+    --card-inner-bg: #0b0f19;
+    --shadow-hover: rgba(112, 0, 255, 0.25);
+    --box-bg: rgba(255, 255, 255, 0.03);
+}
+
+body.light-mode {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.05);
+    --text-main: #111625;
+    --text-muted: #6b7280;
+    --card-inner-bg: #ffffff;
+    --shadow-hover: rgba(0, 0, 0, 0.1);
+    --box-bg: rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   2. THIẾT LẬP CƠ BẢN & KHUNG CARD MAIN
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.card-container {
+    position: relative;
+    padding: 10px;
+}
+
+.glow-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.profile-card {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 360px;
+    max-width: 100%;
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 35px 25px 25px 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background-color 0.3s;
+    overflow: hidden;
+}
+
+/* Hiệu ứng LED RGB ôm khít 4 góc chạy liên tục */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 200% 200%;
+    z-index: -2;
+    animation: moveRGB 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.profile-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: var(--card-inner-bg);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: transparent;
+    box-shadow: 0 0 30px rgba(112, 0, 255, 0.2), 0 0 60px var(--shadow-hover);
+}
+
+.profile-card:hover::before,
+.profile-card:hover::after {
+    opacity: 1 !important;
+}
+
+@keyframes moveRGB {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Nút Đổi Theme */
+.theme-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+body.light-mode .theme-btn {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar & Chữ */
+.avatar-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px auto;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+    background: var(--primary-gradient);
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background: #00ff66;
+    border: 3px solid #141923;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff66;
+}
+
+body.light-mode .status-badge {
+    border-color: #ffffff;
+}
+
+.card-header h2 {
+    color: var(--text-main);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.card-header .job-title {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+/* Các ô thông tin */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.info-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 16px;
+    background: var(--box-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    text-decoration: none;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.info-link:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(6px);
+}
+
+body.light-mode .info-link:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.info-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.info-link:hover .info-icon {
+    background: var(--primary-gradient);
+    box-shadow: 0 5px 15px rgba(112, 0, 255, 0.3);
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-text .label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.info-text .value {
+    font-size: 13.5px;
+    color: var(--text-main);
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* Lưới Mạng Xã Hội */
+.social-connect-grid {
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 20px;
+}
+
+/* @media (max-width: 480px) {
+    .social-connect-grid {
+        grid-template-columns: 1fr;
+    }
+} */
+
+body.light-mode .social-connect-grid {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.connect-box {
+    flex: 1 1 30%;         /* Mỗi mục chiếm khoảng 30%, tự co giãn */
+    min-width: 90px;       /* Đảm bảo không bị quá nhỏ */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn icon và chữ vào giữa hộp */
+    padding: 10px 5px;
+    gap: 4px;
+    padding: 10px;
+    background: var(--box-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.connect-box .icon-wrapper {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;    /* Không cho phép khung bị co lại */
+}
+
+body.light-mode .connect-box .icon-wrapper {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.social-logo {
+    width: 20px;       /* Đặt kích thước cố định */
+    height: 20px;      /* Đặt kích thước cố định */
+    object-fit: contain; /* Đảm bảo logo không bị méo */
+    display: block;    /* Loại bỏ khoảng trắng thừa dưới ảnh */
+}
+
+.connect-box .connect-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Phông chữ */
+    letter-spacing: 0.2px;   /* Khoảng cách giữa các chữ cái */
+}
+
+.connect-box.facebook:hover {
+    background: rgba(24, 119, 242, 0.12);
+    border-color: #1877f2;
+}
+
+.connect-box.zalo:hover {
+    background: rgba(0, 104, 255, 0.12);
+    border-color: #0068ff;
+}
+
+.connect-box:hover {
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   3. GIAO DIỆN CODE VIEWER (ẨN / HIỆN SINGLE PAGE)
+   ========================================================================== */
+#code-viewer-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    height: 100%;
+}
+
+.viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+}
+
+body.light-mode .viewer-header {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.viewer-header h3 {
+    font-size: 14px;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.control-btn-back {
+    background: var(--primary-gradient);
+    border: none;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.code-box-wrapper {
+    background: #121620;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 15px;
+    height: 320px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.code-box-wrapper code {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: #00ff66;
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.6;
+}
+
+.viewer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#project-counter {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.nav-btn {
+    background: var(--box-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+}
+
+.code-box-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.code-box-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   CSS CẢI TIẾN: THANH BANNER DỰ ÁN PHẲNG & TRẢ LẠI FORM NÚT GỐC
+   ========================================================================== */
+.project-banner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px !important;
+}
+
+/* Hiệu ứng bừng sáng LED RGB viền thanh dự án khi hover chuột vào */
+.project-banner-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #7000ff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(112, 0, 255, 0.15);
+}
+
+.banner-icon {
+    font-size: 24px;
+}
+
+.banner-text h3 {
+    font-size: 14px;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.banner-text .banner-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* TRẢ LẠI THIẾT KẾ PHẲNG BO GÓC GỐC CHO KHỐI ĐIỀU HƯỚNG DƯỚI ĐÁY */
+.viewer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+#project-counter {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Nút bấm Trước/Sau trả về giao diện phẳng bo viền nguyên bản */
+.nav-btn {
+    background: var(--box-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    color: var(--text-main) !important;
+    padding: 10px 18px !important;
+    border-radius: 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: var(--text-main) !important;
+    color: var(--bg-color) !important;
+    border-color: var(--text-main) !important;
+}
+
+/* Light mode cho thanh banner */
+body.light-mode .project-banner-item {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .project-banner-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: #ff007f;
+}
+
+/* ==========================================================================
+   CSS CẢI TIẾN: DANH SÁCH XẾP TẦNG & THANH CUỘN ẨN TIN TẾ
+   ========================================================================== */
+.projects-list-scroll-wrapper {
+    padding: 12px !important;
+    /* Thu nhỏ padding để tăng diện tích hiển thị */
+    height: 330px;
+    /* Cố định chiều cao để kích hoạt tính năng cuộn */
+    overflow-y: auto;
+    /* Tự động hiện thanh cuộn dọc nếu nhiều dự án */
+}
+
+/* Khối xếp tầng các dự án theo chiều dọc */
+.projects-vertical-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Khoảng cách giữa các thanh dự án */
+}
+
+/* Định dạng từng thanh dự án nhỏ gọn, không chiếm diện tích */
+.project-list-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    text-decoration: none;
+    text-align: left;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hiệu ứng bừng sáng LED viền khi rê chuột vào từng thanh dự án */
+.project-list-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #7000ff;
+    transform: translateX(4px);
+    /* Trượt nhẹ sang phải tạo cảm giác phản hồi cao cấp */
+    box-shadow: 0 6px 15px rgba(112, 0, 255, 0.12);
+}
+
+/* 1. Sửa lỗi chữ tiêu đề dự án bị tàng hình */
+.item-text-group h4 {
+    color: var(--text-main) !important;
+    /* Ép chữ đổi sang màu tối khi bật Light mode */
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 2. Giúp dòng chữ hướng dẫn "Nhấp để truy cập..." rõ màu hơn trên nền sáng */
+.item-text-group .item-link-text {
+    color: var(--text-muted) !important;
+    /* Tự động đổi thành màu xám đậm dễ nhìn */
+    font-size: 10.5px;
+    font-weight: 500;
+    margin-top: 1px;
+}
+
+/* 3. Tối ưu lại màu nền của cả hộp đen lớn khi ở Light mode để tăng độ tương phản */
+body.light-mode .code-box-wrapper {
+    background: #1a1f2c !important;
+    /* Giữ hộp nền ở mức tối vừa phải (Xanh sẫm bầu trời) */
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   FIX TRIỆT ĐỂ: ÉP CHỮ SÁNG RÕ NÉT TRONG HỘP DANH SÁCH DỰ ÁN
+   ========================================================================== */
+
+/* Ép hộp nền chứa dự án luôn giữ tone màu tối sẫm để tương phản với chữ sáng */
+.projects-list-scroll-wrapper,
+#code-viewer-content .code-box-wrapper {
+    background: #181d28 !important;
+    /* Màu xanh đen sẫm cao cấp */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Ép tiêu đề h4 của dự án luôn hiển thị màu TRẮNG tinh khiết không bị tàng hình */
+.project-list-item h4,
+#projects-container-list .project-list-item h4 {
+    color: #ffffff !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    /* Tạo bóng mờ cho chữ nổi bật */
+}
+
+/* Ép dòng chữ phụ "Nhấp để truy cập..." hiển thị màu xám sáng rõ ràng */
+.project-list-item .item-link-text,
+#projects-container-list .project-list-item .item-link-text {
+    color: #a0aec0 !important;
+    /* Màu xám sáng chuẩn UI/UX */
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
+}
+
+/* Hiệu ứng khi di chuột vào từng thanh dự án trong hộp nền tối */
+.project-list-item:hover h4 {
+    color: #ffffff !important;
+}
+
+.project-list-item:hover .item-link-text {
+    color: #ff007f !important;
+    /* Đổi chữ hướng dẫn sang màu hồng neon khi hover chuột */
+}
+
+
+/* Light mode cho danh sách dự án */
+body.light-mode .project-list-item {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .project-list-item:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: #ff007f;
+}
+
+body.light-mode .projects-list-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
