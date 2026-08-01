@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -123,3 +124,130 @@
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Profile Card</title>
+    <!-- Nhúng phông chữ viết và font code chuyên dụng -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="card-container">
+        <!-- Đốm sáng trang trí phía sau card -->
+        <div class="glow-bg"></div>
+
+        <div class="profile-card">
+
+            <!-- NÚT LIGHT/DARK MODE -->
+            <button id="theme-toggle" class="theme-btn">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path
+                        d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41">
+                    </path>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+            </button>
+
+            <!-- GIAO DIỆN CHÍNH (THÔNG TIN PROFILE) -->
+            <div id="main-profile-content">
+                <div class="card-header">
+                    <div class="avatar-wrapper">
+                        <img src="ava.png" alt="User Avatar" class="avatar">
+                        <span class="status-badge"></span>
+                    </div>
+                    <h2>Lê Hữu Phi</h2>
+                    <p class="job-title">Website Developer</p>
+                </div>
+                <!-- THÔNG TIN LIÊN HỆ -->
+                <div class="card-body">
+                    <!-- Điện thoại -->
+                    <a href="tel:+84387614187" class="info-link">
+                        <div class="info-icon"><img src="dien-thoai.png" alt="Phone" class="social-logo"></div>
+                        <div class="info-text"><span class="label">Điện thoại</span>
+                            <span class="value">+84 387 614 187</span></div>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="https://google.com" target="_blank" class="info-link">
+                        <div class="info-icon"><img src="mail.png" alt="Mail" class="social-logo"></div>
+                        <div class="info-text"><span class="label">Email liên hệ</span>
+                            <span class="value">lp5378411@gmail.com</span></div>
+                    </a>
+
+                    <!-- Trường học -->
+                    <a href="https://cdktcnqn.edu.vn" target="_blank" class="info-link">
+                        <div class="info-icon"><img src="truong-cd.png" alt="School" class="social-logo"></div>
+                        <div class="info-text"><span class="label">School</span>
+                            <span class="value">Quy Nhon College of Technology</span></div>
+                    </a>
+
+                    <!-- BẤM VÀO ĐÂY ĐỂ XEM SOURCE CODE TRỰC TIẾP TRÊN CARD -->
+                    <a href="#" id="view-source-trigger" class="info-link">
+                        <div class="info-icon"><img src="folder.jpg" alt="Coffee" class="social-logo"></div>
+                        <div class="info-text"><span class="label">Website Source</span>
+                            <span class="value">Xem dự án trực tiếp tại đây</span></div>
+                    </a>
+                </div>
+                <!-- Liên kết mạng xã hội -->
+                <div class="social-connect-grid">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/wei.077" target="_blank" class="connect-box facebook">
+                        <div class="icon-wrapper"><img src="face.png" alt="Facebook" class="social-logo"></div>
+                        <span class="connect-label">Facebook</span>
+                    </a>
+                    <!-- Zalo -->
+                    <a href="https://zalo.me/0387614187" target="_blank" class="connect-box zalo">
+                        <div class="icon-wrapper"><img src="zalo.png" alt="Zalo" class="social-logo"></div>
+                        <span class="connect-label">Zalo</span>
+                    </a>
+                    <!-- Github -->
+                    <a href="https://github.com/wei7-dev" target="_blank" class="connect-box github">
+                        <div class="icon-wrapper"><img src="github.png" alt="Github" class="social-logo"></div>
+                        <span class="connect-label">Github</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- GIAO DIỆN HIỂN THỊ DANH SÁCH DỰ ÁN CUỘN TRONG LÒNG CARD -->
+            <div id="code-viewer-content" style="display: none;">
+                <div class="viewer-header">
+                    <button id="back-to-profile" class="control-btn-back">Quay lại</button>
+                </div>
+
+                <!-- VÙNG KHUNG CHỨA DANH SÁCH NHIỀU DỰ ÁN (Có tích hợp thanh cuộn mượt) -->
+                <div class="code-box-wrapper projects-list-scroll-wrapper">
+                    <div id="projects-container-list" class="projects-vertical-stack">
+                        <!-- JavaScript sẽ tự động render hàng loạt thanh dự án xếp tầng vào đây -->
+                    </div>
+                </div>
+
+                <!-- THANH ĐIỀU HƯỚNG DÙNG ĐỂ CHUYỂN TRANG/DANH MỤC KHI SỐ LƯỢNG DỰ ÁN QUÁ LỚN -->
+                <div class="viewer-footer">
+                    <button id="prev-project" class="nav-btn">◀ Trước</button>
+                    <span id="project-counter">Trang 1 / 1</span>
+                    <button id="next-project" class="nav-btn">Sau ▶</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Kết nối file JavaScript -->
+    <script src="index.js"></script>
+</body>
+
+</html>
+>>>>>>> 82274a8145383ebf0862dad53774ff9f3120c90d
