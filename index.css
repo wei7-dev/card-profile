@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* ==========================================================================
    1. ĐỊNH NGHĨA BIẾN MÀU SẮC (HỖ TRỢ THEME)
    ========================================================================== */
@@ -1298,5 +1298,4 @@ body.light-mode .project-list-item:hover {
 
 body.light-mode .projects-list-scroll-wrapper::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
->>>>>>> 82274a8145383ebf0862dad53774ff9f3120c90d
 }
