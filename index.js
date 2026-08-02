@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
     // 1. KHO DỮ LIỆU TẤT CẢ CÁC DỰ ÁN CỦA BẠN (Tự do thêm hàng chục dự án tại đây)
     const allMyProjectsArray = [
@@ -118,29 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-=======
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. KHO DỮ LIỆU TẤT CẢ CÁC DỰ ÁN CỦA BẠN (Tự do thêm hàng chục dự án tại đây)
-    const allMyProjectsArray = [
-        { title: "Dự án 1: Thiệp sinh nhật", url: "https://sinh-nhat-ny.netlify.app/", icon: "🎂" },
-        { title: "Dự án 2: Thẻ thông tin", url: "https://wei7-dev.github.io/card-profile/", icon: "💳" },
-        { title: "Dự án 3: HRM-System", url: "https://wei7-dev.github.io/hrm-system/", icon: "📱" }
-        // { title: "Dự án 4: Website Bất Động Sản", url: "https://link-bds.com", icon: "🏠" }
-    ];
-
-    const PROJECTS_PER_PAGE = 4; // Cấu hình số dự án tối đa hiện trên 1 trang
-    let currentPageIndex = 0;
-
-    // 2. KHAI BÁO CÁC BIẾN DOM (Bắt buộc phải có đầy đủ để tránh lỗi tàng hình)
-    const mainContent = document.getElementById('main-profile-content');
-    const codeViewer = document.getElementById('code-viewer-content');
-    const viewSourceBtn = document.getElementById('view-source-trigger');
-    const backBtn = document.getElementById('back-to-profile');
-    
-    const projectsContainer = document.getElementById('projects-container-list');
-    const counterDisplay = document.getElementById('project-counter');
-    const prevBtn = document.getElementById('prev-project');
-    const nextBtn = document.getElementById('next-project');
 
     // 3. HÀM TẠO GIAO DIỆN THANH DỰ ÁN XẾP TẦNG & PHÂN TRANG
     function renderProjectsList() {
@@ -238,4 +214,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
->>>>>>> 82274a8145383ebf0862dad53774ff9f3120c90d
